@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    @apply bg-dark text-gray-100;
+  }
+
+  body {
+    letter-spacing: 0.01em;
+    line-height: 1.65;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Oswald', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.section-shell {
+  @apply mx-auto max-w-7xl;
+}
+
+.section-kicker {
+  @apply mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-secondary;
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes border-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+.glow-rotate-border {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-rotate-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    110deg,
+    rgba(80, 122, 189, 0.06) 0%,
+    rgba(80, 122, 189, 0.1) 30%,
+    rgba(180, 208, 255, 0.95) 50%,
+    rgba(120, 170, 255, 0.45) 65%,
+    rgba(80, 122, 189, 0.08) 80%,
+    rgba(80, 122, 189, 0.04) 100%
+  );
+  background-size: 220% 220%;
+  filter: drop-shadow(0 0 8px rgba(120, 170, 255, 0.45));
+  animation:
+    border-flow 2.8s ease-in-out infinite,
+    border-breathe 2.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-rotate-border::before {
+    animation: none;
+    opacity: 0.75;
+  }
+}

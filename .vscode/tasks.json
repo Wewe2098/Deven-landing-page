@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "install project dependencies",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"install:all"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "install studio only",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"--prefix",
+				"studio-my-article-landing-site",
+				"install"
+			],
+			"isBackground": false,
+			"group": "build"
+		}
+	]
+}

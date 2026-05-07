@@ -1,0 +1,12 @@
+{
+  "name": "dev-landing-page",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "./start.sh",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:studio": "npm --prefix studio-my-article-landing-site run dev",
+    "install:all": "npm --prefix frontend install && npm --prefix backend install && npm --prefix studio-my-article-landing-site install"
+  }
+}
