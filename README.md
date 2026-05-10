@@ -42,7 +42,7 @@ dev-landing-page/
 
 ## � Quick Start
 
-### Start Both Servers Together (Easiest)
+### Start Full Stack Together (Easiest)
 
 From the project root:
 
@@ -50,7 +50,7 @@ From the project root:
 npm run dev
 ```
 
-This uses the root `package.json` and starts both apps together.
+This uses the root `package.json` and starts the frontend, backend, and Sanity Studio together.
 
 **Direct script option**
 
@@ -68,6 +68,7 @@ This will automatically:
 - ✅ Install dependencies (if needed)
 - ✅ Start frontend on http://localhost:5173
 - ✅ Start backend on http://localhost:5000
+- ✅ Start Sanity Studio on http://localhost:3333
 
 ### Or Start Manually
 
@@ -81,6 +82,13 @@ npm run dev
 **Backend Setup** (in another terminal)
 ```bash
 cd backend
+npm install
+npm run dev
+```
+
+**Sanity Studio Setup** (in a third terminal)
+```bash
+cd studio-my-article-landing-site
 npm install
 npm run dev
 ```
@@ -151,6 +159,44 @@ Deploy to Heroku, Railway, or any Node.js hosting:
 npm run build
 npm start
 ```
+
+### Vercel Deployment (Recommended)
+
+This repo is now configured for Vercel using **two projects**:
+
+1. **Backend API project** (root directory: `backend`)
+2. **Frontend site project** (root directory: `frontend`)
+
+#### 1) Deploy Backend to Vercel
+
+- Create a new Vercel project
+- Set **Root Directory** to `backend`
+- Vercel will use `backend/vercel.json`
+- Add environment variables in Vercel:
+  - `SANITY_PROJECT_ID`
+  - `SANITY_DATASET`
+  - `SANITY_API_VERSION` (e.g. `2024-01-01`)
+  - `SANITY_API_TOKEN` *(optional, public dataset fallback is supported)*
+  - `FRONTEND_URL` = your frontend Vercel URL (or comma-separated list)
+
+After deploy, note your backend URL, e.g.:
+
+`https://your-api-project.vercel.app`
+
+#### 2) Deploy Frontend to Vercel
+
+- Create another Vercel project
+- Set **Root Directory** to `frontend`
+- Vercel will use `frontend/vercel.json` for SPA route rewrites
+- Add environment variables:
+  - `VITE_API_URL=https://your-api-project.vercel.app/api`
+  - `VITE_SITE_URL=https://your-frontend-project.vercel.app`
+  - `VITE_SANITY_PROJECT_ID=y7j5j2mt`
+  - `VITE_SANITY_DATASET=production`
+
+#### 3) Update CORS
+
+Make sure backend `FRONTEND_URL` includes your final frontend domain so API requests are allowed.
 
 ## 📝 Article Schema (Sanity)
 
@@ -232,3 +278,4 @@ MIT License - feel free to use this project as a template
 - Built with React, Express, and Sanity CMS
 - UI inspired by modern web design patterns
 - Animation powered by Framer Motion
+# Deven-landing-page
