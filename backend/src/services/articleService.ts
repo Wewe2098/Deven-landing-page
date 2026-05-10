@@ -1,4 +1,4 @@
-import sanityClient from '../config/sanity.js'
+import { fetchFromSanity } from '../config/sanity.js'
 import type { Article } from '../types/index.js'
 
 export const getAllArticles = async (): Promise<Article[]> => {
@@ -24,7 +24,7 @@ export const getAllArticles = async (): Promise<Article[]> => {
       publishedAt,
       featured
     }`
-    const articles = await sanityClient.fetch(query)
+    const articles = await fetchFromSanity<Article[]>(query)
     return articles || []
   } catch (error) {
     console.error('Error fetching articles from Sanity:', error)
@@ -55,7 +55,7 @@ export const getFeaturedArticles = async (): Promise<Article[]> => {
       publishedAt,
       featured
     }`
-    const articles = await sanityClient.fetch(query)
+    const articles = await fetchFromSanity<Article[]>(query)
     return articles || []
   } catch (error) {
     console.error('Error fetching featured articles from Sanity:', error)
@@ -86,7 +86,7 @@ export const getArticleBySlug = async (slug: string): Promise<Article | null> =>
       publishedAt,
       featured
     }`
-    const article = await sanityClient.fetch(query, { slug })
+    const article = await fetchFromSanity<Article | null>(query, { slug })
     return article || null
   } catch (error) {
     console.error(`Error fetching article with slug ${slug}:`, error)
@@ -117,7 +117,7 @@ export const getArticlesByCategory = async (category: string): Promise<Article[]
       publishedAt,
       featured
     }`
-    const articles = await sanityClient.fetch(query, { category })
+    const articles = await fetchFromSanity<Article[]>(query, { category })
     return articles || []
   } catch (error) {
     console.error(`Error fetching articles for category ${category}:`, error)

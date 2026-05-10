@@ -42,7 +42,7 @@ export const ExperienceTicker = () => {
                 <img
                   src={logo}
                   alt={`Company logo ${idx % logos.length + 1}`}
-                  className="h-8 w-auto rounded-full object-contain"
+                  className="h-4 w-auto rounded-full object-contain"
                   loading="lazy"
                 />
               </motion.div>

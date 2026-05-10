@@ -72,6 +72,7 @@ export const GlobalAdvisorySection = () => {
           (LSE), and MIT Sloan to bridge traditional <br />
           business logic with <span className="text-[#507abd]">AI-driven commerce</span>.
           <br></br>
+          <br></br>
           Ensuring strategic growth is both value-accretive and technologically defensible through
           executive-level advisory.
         </motion.p>

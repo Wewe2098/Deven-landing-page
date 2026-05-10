@@ -3,13 +3,55 @@ import { Link, useParams } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { useArticle } from '../hooks/useArticles'
+import { Seo } from '../components/Seo'
 
 export const ArticlePage = () => {
   const { slug } = useParams()
   const { article, loading, error } = useArticle(slug)
+  const siteUrl = import.meta.env.VITE_SITE_URL || window.location.origin
+  const articleUrl = slug ? `${siteUrl}/article/${slug}` : `${siteUrl}/article`
+
+  const seoTitle = article
+    ? `${article.title} | Deven Govender`
+    : 'Article | Deven Govender'
+
+  const seoDescription = article?.description ||
+    'Read strategic perspectives on AI, leadership, and marketplace transformation.'
+
+  const seoImage = article?.image?.asset?.url
 
   return (
     <div className="min-h-screen bg-dark text-white">
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        url={articleUrl}
+        image={seoImage}
+        type="article"
+        robots={error ? 'noindex, nofollow' : 'index, follow'}
+        structuredData={
+          article
+            ? {
+                '@context': 'https://schema.org',
+                '@type': 'BlogPosting',
+                headline: article.title,
+                description: seoDescription,
+                image: seoImage ? [seoImage] : undefined,
+                datePublished: article.publishedAt,
+                dateModified: article._updatedAt,
+                url: articleUrl,
+                author: {
+                  '@type': 'Person',
+                  name: article.author?.name || 'Deven Govender',
+                },
+                publisher: {
+                  '@type': 'Person',
+                  name: 'Deven Govender',
+                },
+              }
+            : undefined
+        }
+      />
       <Header />
       <main className="px-4 py-10 md:px-6">
         <div className="mx-auto max-w-4xl">

@@ -88,7 +88,7 @@ export const CredentialsSection = () => {
                 <>
                   <p className="mb-2 mt-5 text-sm font-semibold text-slate-900">Core Electives</p>
                   <ul className="list-disc space-y-1 pl-5 text-slate-600">
-                    {item.electives.map((elective) => (
+                    {item.electives?.map((elective) => (
                       <li key={elective}>{elective}</li>
                     ))}
                   </ul>

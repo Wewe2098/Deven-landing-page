@@ -1,6 +1,6 @@
-# 🚀 Combined Server Startup Guide
+# 🚀 Combined Service Startup Guide
 
-You can now start both frontend and backend servers together with a single command!
+You can now start the frontend, backend, and Sanity Studio together with a single command!
 
 ---
 
@@ -11,7 +11,7 @@ You can now start both frontend and backend servers together with a single comma
 npm run dev
 ```
 
-This calls the root startup script and launches both apps.
+This calls the root startup script and launches all three services.
 
 ### Direct script option
 
@@ -25,11 +25,12 @@ This calls the root startup script and launches both apps.
 start.bat
 ```
 
-That's it! Both servers will:
+That's it! The full stack will:
 - ✅ Auto-install missing dependencies
 - ✅ Start frontend on http://localhost:5173
 - ✅ Start backend on http://localhost:5000
-- ✅ Display both outputs in your terminal
+- ✅ Start Sanity Studio on http://localhost:3333
+- ✅ Display all outputs in your terminal
 
 **To stop:** Press `Ctrl+C`
 
@@ -43,8 +44,10 @@ That's it! Both servers will:
 2. If not, runs: npm install
 3. Checks if backend/node_modules exists
 4. If not, runs: npm install
-5. Starts both servers in parallel
-6. Cleans up both processes on exit
+5. Checks if studio-my-article-landing-site/node_modules exists
+6. If not, runs: npm install
+7. Starts frontend, backend, and Sanity Studio in parallel
+8. Cleans up all processes on exit
 ```
 
 ### start.bat (Windows)
@@ -53,9 +56,10 @@ That's it! Both servers will:
 2. If not, runs: npm install
 3. Checks if backend\node_modules exists
 4. If not, runs: npm install
-5. Opens two terminal windows
-6. Runs frontend in first window
-7. Runs backend in second window
+5. Checks if studio-my-article-landing-site\node_modules exists
+6. If not, runs: npm install
+7. Opens three terminal windows
+8. Runs frontend, backend, and Sanity Studio
 ```
 
 ---
@@ -87,11 +91,12 @@ Make sure you have:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🌐 Starting Frontend on http://localhost:5173...
 🔌 Starting Backend on http://localhost:5000...
+📝 Starting Sanity Studio on http://localhost:3333...
 
-Press Ctrl+C to stop both servers
+Press Ctrl+C to stop all services
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[Both server outputs appear below]
+[All service outputs appear below]
 ```
 
 ### Windows (start.bat)
@@ -105,7 +110,7 @@ Press Ctrl+C to stop both servers
 ✅ Backend dependencies installed
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ Both servers started in separate windows
+✅ Frontend, backend, and Sanity Studio started in separate windows
 ```
 
 ---
@@ -118,6 +123,7 @@ Once running, access:
 |---------|-----|---------|
 | **Frontend** | http://localhost:5173 | React UI |
 | **Backend** | http://localhost:5000 | Express API |
+| **Sanity Studio** | http://localhost:3333 | Manage articles |
 | **Health Check** | http://localhost:5000/health | API status |
 
 ---
@@ -134,6 +140,13 @@ npm run dev
 **Terminal 2:**
 ```bash
 cd backend
+npm install
+npm run dev
+```
+
+**Terminal 3:**
+```bash
+cd studio-my-article-landing-site
 npm install
 npm run dev
 ```
@@ -164,7 +177,8 @@ chmod +x start.sh
 ```bash
 # Clear cache and reinstall
 rm -rf frontend/node_modules backend/node_modules
-rm frontend/package-lock.json backend/package-lock.json
+rm -rf studio-my-article-landing-site/node_modules
+rm frontend/package-lock.json backend/package-lock.json studio-my-article-landing-site/package-lock.json
 ./start.sh
 ```
 
@@ -174,7 +188,8 @@ rm frontend/package-lock.json backend/package-lock.json
 
 1. **Open Frontend:** http://localhost:5173
 2. **Check Backend Health:** http://localhost:5000/health
-3. **Create Articles:** Log into Sanity Studio
+3. **Open Studio:** http://localhost:3333
+4. **Create Articles:** Log into Sanity Studio
 4. **Test API:** Visit http://localhost:5000/api/articles
 5. **See Articles:** Refresh frontend at http://localhost:5173
 
@@ -210,8 +225,8 @@ See SETUP_GUIDE.md for detailed environment setup
 
 | Method | Pros | Cons |
 |--------|------|------|
-| **Combined Script** | Simple, auto-install, one command | Both outputs in one terminal |
-| **Manual (Separate Terminals)** | Separate outputs, easier debugging | Need 2 terminals, manual install |
+| **Combined Script** | Simple, auto-install, one command | All outputs in one terminal |
+| **Manual (Separate Terminals)** | Separate outputs, easier debugging | Need 3 terminals, manual install |
 
 **Recommendation:** Use scripts for development, manual for debugging
 
@@ -254,10 +269,10 @@ Close the terminal windows
 ### Check if ports are in use
 ```bash
 # macOS/Linux
-lsof -i :5173 -i :5000
+lsof -i :5173 -i :5000 -i :3333
 
 # Windows
-netstat -ano | findstr "5173 5000"
+netstat -ano | findstr "5173 5000 3333"
 ```
 
 ---

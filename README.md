@@ -153,6 +153,51 @@ npm run build
 # Deploy the dist folder
 ```
 
+### Netlify Deployment
+
+This repo includes Netlify config for both frontend and backend.
+
+#### Frontend site (Netlify project #1)
+
+Uses root [netlify.toml](netlify.toml):
+
+- Build base: _(leave empty)_
+- Build command: `npm --prefix frontend run build`
+- Publish directory: `frontend/dist`
+- SPA routing: handled via `netlify.toml` and [frontend/public/_redirects](frontend/public/_redirects)
+
+Set these **Netlify environment variables**:
+
+- `VITE_API_URL` (your backend Netlify URL, e.g. `https://your-backend-site.netlify.app/api`)
+- `VITE_SITE_URL` (your Netlify site URL)
+- `VITE_SANITY_PROJECT_ID` (e.g. `y7j5j2mt`)
+- `VITE_SANITY_DATASET` (e.g. `production`)
+
+#### Backend API site (Netlify project #2)
+
+Uses [backend/netlify.toml](backend/netlify.toml):
+
+- Base directory: `backend`
+- Functions directory: `netlify/functions`
+- API routes exposed as:
+  - `/api/*`
+  - `/health`
+
+Set these **backend Netlify environment variables**:
+
+- `SANITY_PROJECT_ID`
+- `SANITY_DATASET`
+- `SANITY_API_VERSION` (e.g. `2024-01-01`)
+- `SANITY_API_TOKEN` *(optional)*
+- `FRONTEND_URL` (your frontend Netlify domain)
+
+After deploy, verify:
+
+- Home page loads
+- Article detail routes load directly (refresh on `/article/:slug` works)
+- Articles fetch correctly from `VITE_API_URL`
+- Backend health endpoint works (`/health`)
+
 ### Backend
 Deploy to Heroku, Railway, or any Node.js hosting:
 ```bash

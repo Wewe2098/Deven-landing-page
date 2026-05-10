@@ -8,7 +8,7 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "dev": "sanity dev",
+    "dev": "lsof -nP -iTCP:3333 -sTCP:LISTEN | awk 'NR>1 {print $2}' | xargs kill -9 2>/dev/null; sanity dev",
     "start": "sanity start"
   },
   "keywords": [
