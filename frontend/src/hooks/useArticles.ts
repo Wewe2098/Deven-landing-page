@@ -1,28 +1,13 @@
 import { useState, useEffect } from 'react'
-import { sanityClient } from '../config/sanity'
+import axios from 'axios'
 import type { Article } from '../types'
 
-const ARTICLE_FIELDS = `
-  _id,
-  _type,
-  _createdAt,
-  _updatedAt,
-  title,
-  "slug": slug.current,
-  description,
-  content,
-  author,
-  image{
-    alt,
-    asset->{
-      url
-    }
-  },
-  category,
-  tags,
-  publishedAt,
-  featured
-`
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim()
+const isInvalidProdLocalhost = !import.meta.env.DEV && Boolean(configuredApiUrl?.includes('localhost'))
+const API_URL = (isInvalidProdLocalhost
+  ? '/api'
+  : configuredApiUrl || (import.meta.env.DEV ? 'http://localhost:5000/api' : '/api')
+).replace(/\/$/, '')
 
 export const useArticles = () => {
   const [articles, setArticles] = useState<Article[]>([])
@@ -33,10 +18,8 @@ export const useArticles = () => {
     const fetchArticles = async () => {
       try {
         setLoading(true)
-        const data = await sanityClient.fetch<Article[]>(
-          `*[_type == "article"] | order(publishedAt desc) {${ARTICLE_FIELDS}}`
-        )
-        setArticles(data || [])
+        const response = await axios.get(`${API_URL}/articles`)
+        setArticles(response.data.articles || response.data)
         setError(null)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch articles')
@@ -61,10 +44,8 @@ export const useFeaturedArticles = () => {
     const fetchArticles = async () => {
       try {
         setLoading(true)
-        const data = await sanityClient.fetch<Article[]>(
-          `*[_type == "article" && featured == true] | order(publishedAt desc) {${ARTICLE_FIELDS}}`
-        )
-        setArticles(data || [])
+        const response = await axios.get(`${API_URL}/articles/featured`)
+        setArticles(response.data.articles || response.data)
         setError(null)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch featured articles')
@@ -93,11 +74,8 @@ export const useArticle = (slug?: string) => {
     const fetchArticle = async () => {
       try {
         setLoading(true)
-        const data = await sanityClient.fetch<Article | null>(
-          `*[_type == "article" && slug.current == $slug][0] {${ARTICLE_FIELDS}}`,
-          { slug }
-        )
-        setArticle(data || null)
+        const response = await axios.get(`${API_URL}/articles/${slug}`)
+        setArticle(response.data || null)
         setError(null)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch article')
