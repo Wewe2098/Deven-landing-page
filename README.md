@@ -42,6 +42,8 @@ dev-landing-page/
 
 ## � Quick Start
 
+The site is live: https://devengovender.co.za
+
 ### Start Full Stack Together (Easiest)
 
 From the project root:
