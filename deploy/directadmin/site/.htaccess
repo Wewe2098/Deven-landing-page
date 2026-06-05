@@ -1,0 +1,18 @@
+Options -MultiViews
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# ── Option A: Serve frontend via Apache, proxy /api/* to Node.js ─────────────
+# Uncomment and set your Node.js app port if Apache should proxy API requests.
+#
+# RewriteCond %{REQUEST_URI} ^/api [OR]
+# RewriteCond %{REQUEST_URI} ^/health
+# RewriteRule ^(.*)$ http://127.0.0.1:5000/$1 [P,L]
+
+RewriteRule ^index\.html$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+</IfModule>

@@ -25,8 +25,18 @@ export const FinalCtaSection = () => {
           partnerships.
         </motion.p>
 
+        <motion.p
+          className="mx-auto mb-6 max-w-3xl text-sm font-medium uppercase tracking-[0.18em] text-slate-500"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.12 }}
+        >
+          Visit www.devengovender.co.za
+        </motion.p>
+
         <motion.a
-          href="http://linkedin.com/in/devengovender"
+          href="https://www.linkedin.com/in/devengovender"
           target="_blank"
           rel="noreferrer"
           className="inline-flex rounded-lg border-2 border-[#507abd] bg-[#507abd] px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-transparent hover:text-[#507abd]"

@@ -9,7 +9,7 @@ const navLinks = [
   { label: 'Credentials', href: '/#credentials' },
   { label: 'Purpose', href: '/#purpose' },
   { label: 'Articles', href: '/#articles' },
-  { label: 'Get in Touch', href: 'http://linkedin.com/in/devengovender' },
+  { label: 'Get in Touch', href: 'https://www.linkedin.com/in/devengovender' },
 ]
 
 export const Header: React.FC = () => {

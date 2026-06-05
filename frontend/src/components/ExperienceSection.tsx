@@ -15,7 +15,7 @@ export const ExperienceSection = () => {
         >
           <p className="section-kicker">Strategic Architect Profile</p>
           <h2 className="mb-3 text-4xl font-bold text-white">Strategic Architect Profile</h2>
-          <h3 className="mb-5 text-2xl font-semibold text-secondary">29 Years of Compounding Expertise</h3>
+          <h3 className="mb-5 text-2xl font-semibold text-secondary">30 Years of Compounding Expertise</h3>
           <p className="mb-4 text-gray-300">
             I operate at the intersection of three decades of operational leadership and the
             cutting edge of academic rigor. My career has been defined by a single objective:

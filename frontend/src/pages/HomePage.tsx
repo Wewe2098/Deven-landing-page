@@ -8,14 +8,19 @@ import { Footer } from '../components/Footer'
 import { Seo } from '../components/Seo'
 
 export const HomePage = () => {
-  const siteUrl = import.meta.env.VITE_SITE_URL || window.location.origin
+  const siteUrl = 'https://www.devengovender.co.za'
 
   return (
     <div className="min-h-screen bg-dark">
       <Seo
-        title="Deven Govender | Strategic Advisor, AI & Marketplace Growth"
-        description="Senior executive and strategic advisor helping organizations engineer growth through AI, technology strategy, and marketplace innovation."
-        keywords="Deven Govender, strategic advisor, AI strategy, marketplace growth, digital transformation, executive leadership"
+        title="Deven Govender | Strategic Advisor & AI Strategy Expert | South Africa"
+        description="Senior executive & strategic advisor with 30+ years scaling digital marketplaces, leading AI strategy, and driving M&A integrations. MBA (Wits), MIT Sloan AI Strategy, LSE M&A."
+        keywords="strategic advisor South Africa, AI strategy consultant, digital marketplace expert, Deven Govender, M&A advisory, fintech strategy, OLX Prosus AutoTrader"
+        ogImage="https://www.devengovender.co.za/og-image.jpg"
+        twitterImage="https://www.devengovender.co.za/og-image.jpg"
+        ogImageWidth="1200"
+        ogImageHeight="630"
+        ogLocale="en_ZA"
         url={`${siteUrl}/`}
         type="website"
         structuredData={{
@@ -24,7 +29,7 @@ export const HomePage = () => {
           name: 'Deven Govender',
           url: siteUrl,
           description:
-            'Senior executive and strategic advisor helping organizations engineer growth through AI, technology strategy, and marketplace innovation.',
+            'Senior executive & strategic advisor with 30+ years scaling digital marketplaces, leading AI strategy, and driving M&A integrations. MBA (Wits), MIT Sloan AI Strategy, LSE M&A.',
           publisher: {
             '@type': 'Person',
             name: 'Deven Govender',

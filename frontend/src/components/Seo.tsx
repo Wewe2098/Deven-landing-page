@@ -5,6 +5,11 @@ interface SeoProps {
   description: string
   keywords?: string
   image?: string
+  ogImage?: string
+  twitterImage?: string
+  ogImageWidth?: string
+  ogImageHeight?: string
+  ogLocale?: string
   url?: string
   type?: 'website' | 'article'
   robots?: string
@@ -61,6 +66,11 @@ export const Seo = ({
   description,
   keywords,
   image,
+  ogImage,
+  twitterImage,
+  ogImageWidth,
+  ogImageHeight,
+  ogLocale,
   url,
   type = 'website',
   robots = 'index, follow',
@@ -69,6 +79,8 @@ export const Seo = ({
   const siteUrl = import.meta.env.VITE_SITE_URL || window.location.origin
   const resolvedUrl = url || `${siteUrl}${window.location.pathname}`
   const resolvedImage = image || `${siteUrl}/favicon.svg`
+  const resolvedOgImage = ogImage || resolvedImage
+  const resolvedTwitterImage = twitterImage || resolvedImage
   const structuredDataPayload = structuredData ? JSON.stringify(structuredData) : undefined
 
   useEffect(() => {
@@ -80,11 +92,24 @@ export const Seo = ({
     ensureMeta('property', 'og:title', title)
     ensureMeta('property', 'og:description', description)
     ensureMeta('property', 'og:url', resolvedUrl)
-    ensureMeta('property', 'og:image', resolvedImage)
+    ensureMeta('property', 'og:image', resolvedOgImage)
+
+    if (ogImageWidth) {
+      ensureMeta('property', 'og:image:width', ogImageWidth)
+    }
+
+    if (ogImageHeight) {
+      ensureMeta('property', 'og:image:height', ogImageHeight)
+    }
+
+    if (ogLocale) {
+      ensureMeta('property', 'og:locale', ogLocale)
+    }
+
     ensureMeta('name', 'twitter:card', 'summary_large_image')
     ensureMeta('name', 'twitter:title', title)
     ensureMeta('name', 'twitter:description', description)
-    ensureMeta('name', 'twitter:image', resolvedImage)
+    ensureMeta('name', 'twitter:image', resolvedTwitterImage)
 
     if (keywords) {
       ensureMeta('name', 'keywords', keywords)
@@ -99,7 +124,11 @@ export const Seo = ({
     robots,
     type,
     resolvedUrl,
-    resolvedImage,
+    resolvedOgImage,
+    resolvedTwitterImage,
+    ogImageWidth,
+    ogImageHeight,
+    ogLocale,
     structuredDataPayload,
   ])
 

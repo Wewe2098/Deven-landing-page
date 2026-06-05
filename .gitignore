@@ -7,3 +7,6 @@ dist/
 .DS_Store
 build/
 coverage/
+
+# Local Netlify folder
+.netlify

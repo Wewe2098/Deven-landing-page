@@ -30,14 +30,14 @@ const credentials = [
 
 const additionalPrograms = [
   {
+    title: 'Management Advancement Program',
+    org: 'Wits Business School | 2010 – 2011',
+    detail: '',
+  },
+  {
     title: 'Core Concepts in Digital Business',
     org: 'Wits Business School | 2019 – 2020',
     detail: 'Principles of the Digitalizing Economy.',
-  },
-  {
-    title: 'Management Advancement Program',
-    org: 'Wits Business School | 2010 – 2021',
-    detail: '',
   },
   {
     title: 'Postgraduate Diploma in Business Administration',

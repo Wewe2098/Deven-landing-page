@@ -7,6 +7,10 @@
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
     "dev:studio": "npm --prefix studio-my-article-landing-site run dev",
-    "install:all": "npm --prefix frontend install && npm --prefix backend install && npm --prefix studio-my-article-landing-site install"
+    "install:all": "npm --prefix frontend install && npm --prefix backend install && npm --prefix studio-my-article-landing-site install",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend run build",
+    "build:all": "npm run build:frontend && npm run build:backend",
+    "start:prod": "NODE_ENV=production node backend/dist/server.js"
   }
 }

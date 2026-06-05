@@ -24,10 +24,13 @@ export const Footer: React.FC = () => {
             whileHover={{ y: -4 }}
           >
             <h3 className="text-xl font-bold text-secondary mb-4">DEVEN GOVENDER</h3>
-            <p className="text-gray-400">Strategic Growth Leader</p>
-            <p className="text-gray-500 text-sm mt-2">
-              MBA (Wits) | AI Strategy (MIT) | M&A (LSE) | PDBA (Wits)
-            </p>
+            <div className="mt-2 space-y-1 text-sm text-gray-400">
+              <p>Strategic Growth Leader</p>
+              <p>MBA (Wits)</p>
+              <p>AI Strategy (MIT)</p>
+              <p>M&amp;A (LSE)</p>
+              <p>PDBA (Wits)</p>
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -64,7 +67,8 @@ export const Footer: React.FC = () => {
           >
             <h4 className="text-lg font-semibold mb-4">Connect</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="http://linkedin.com/in/devengovender" target="_blank" rel="noreferrer" className="hover:text-secondary">LinkedIn</a></li>
+              <li><a href="https://www.linkedin.com/in/devengovender" target="_blank" rel="noreferrer" className="hover:text-secondary">LinkedIn</a></li>
+              <li><a href="https://www.devengovender.co.za" target="_blank" rel="noreferrer" className="hover:text-secondary">www.devengovender.co.za</a></li>
             </ul>
           </motion.div>
         </div>

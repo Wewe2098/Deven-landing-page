@@ -26,12 +26,12 @@ export const Hero: React.FC = () => {
   return (
     <motion.section
       id="hero"
-      className="flex min-h-[78vh] items-center justify-center bg-[#0e0e0e] bg-mesh px-4 py-10 sm:px-6 md:py-12"
+      className="flex min-h-[68vh] items-center justify-center bg-[#0e0e0e] bg-mesh px-4 py-10 sm:px-6 md:py-12 lg:py-14"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:gap-10 xl:gap-12">
         <div className="order-1 text-center lg:order-1 lg:text-left">
         <motion.h1 
           className="mb-4 text-4xl font-bold text-white md:text-6xl xl:text-7xl"
@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
         </motion.p>
         
         <motion.p 
-          className="mb-10 max-w-2xl text-base text-gray-300 md:text-lg lg:mx-0 mx-auto"
+          className="mx-auto mb-8 max-w-2xl text-base text-gray-300 md:text-lg lg:mx-0"
           variants={itemVariants}
         >
           Senior executive and strategic advisor with over 30 years of experience turning
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
           variants={itemVariants}
         >
           <motion.a
-            href="http://linkedin.com/in/devengovender"
+            href="https://www.linkedin.com/in/devengovender"
             target="_blank"
             rel="noreferrer"
             className="inline-block"
@@ -83,11 +83,11 @@ export const Hero: React.FC = () => {
         </motion.div>
         </div>
 
-        <motion.div variants={itemVariants} className="order-2 translate-y-6 md:translate-y-10">
+        <motion.div variants={itemVariants} className="order-2 flex justify-center lg:translate-x-4 lg:justify-end xl:translate-x-6">
           <img
             src={heroPortrait}
             alt="Deven Govender"
-            className="mx-auto w-full max-w-md object-right"
+            className="mx-auto w-full max-w-sm object-right sm:max-w-md lg:max-w-lg xl:max-w-xl"
           />
         </motion.div>
       </div>

@@ -11,14 +11,14 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   return (
     <motion.div
       className="glow-rotate-border overflow-hidden rounded-2xl border border-white/10 bg-gray-900/95 shadow-lg transition-all hover:shadow-2xl"
-      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
     >
       {article.image && (
-        <div className="relative h-48 overflow-hidden bg-gray-800">
+        <div className="relative h-36 overflow-hidden bg-gray-800">
           <motion.img
             src={article.image.asset.url}
             alt={article.image.alt || article.title}
@@ -29,18 +29,18 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         </div>
       )}
       
-      <div className="p-7">
+      <div className="p-4">
         {article.category && (
-          <span className="mb-4 inline-block rounded-full bg-secondary px-3 py-1 text-xs font-semibold uppercase tracking-wider text-dark">
+          <span className="mb-2 inline-block rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-dark">
             {article.category}
           </span>
         )}
         
-        <h3 className="mb-3 line-clamp-2 text-xl font-bold text-white">
+        <h3 className="mb-2 line-clamp-2 text-base font-bold text-white">
           {article.title}
         </h3>
         
-        <p className="mb-5 line-clamp-3 text-gray-400">
+        <p className="mb-3 line-clamp-3 text-sm leading-5 text-gray-400">
           {article.description || article.content}
         </p>
 
